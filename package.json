@@ -1,0 +1,67 @@
+{
+  "name": "ollama-pair",
+  "displayName": "ollama pair",
+  "description": "ollama piar",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.100.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ollama-pair.codeFromTest",
+        "title": "Create Code From Test"
+      }
+    ],
+    "configuration":[
+      {
+        "title": "Ollama Pair",
+        "type": "object",
+        "properties": {
+        "ollamaPair.model.selectedModel": {
+          "type": "string",
+          "default": "deepseek-coder-v2:latest",
+          "description": "Selected model from ollama"
+        },
+        "ollamaPair.files.testFilePattern": {
+          "type": "string",
+          "default": "spec.ts",
+          "description": "Pattern to detect de test files"
+        },
+        "ollamaPair.execute.testCommand": {
+          "type": "string",
+          "default": "npm run test -- --watch=false",
+          "description": "Test command to run in the command line"
+        }
+      }
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.100.0",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^9.25.1",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "ollama": "^0.5.15"
+  }
+}
